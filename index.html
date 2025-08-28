@@ -1,0 +1,1180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bharti Vikas - Netflix Style Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .netflix-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #000 0%, #1a1a1a 50%, #000 100%);
+            z-index: -2;
+        }
+
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(180deg, rgba(0,0,0,0.9) 0%, transparent 100%);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: #e50914;
+            text-decoration: none;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-item {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:hover {
+            color: #e50914;
+        }
+
+        .profile-section {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+    
+        .profile-pic {
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            border: 2px solid #e50914;
+            background: url('https://avatars.githubusercontent.com/u/14871313?v=4') center/cover no-repeat;
+            cursor: pointer;
+        }
+
+        /* Profile modal */
+                .profile-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+     
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.8)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800"><rect width="1200" height="800" fill="%23000"/><circle cx="300" cy="200" r="50" fill="%23e50914" opacity="0.3"/><circle cx="900" cy="600" r="80" fill="%23e50914" opacity="0.2"/></svg>');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 4rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #fff, #e50914);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 20px;
+            color: #ccc;
+            opacity: 0.9;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            background: #e50914;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .hero-description {
+            font-size: 1.3rem;
+            color: #ccc;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .btn-primary {
+            background: #fff;
+            color: #000;
+        }
+
+        .btn-primary:hover {
+            background: #e50914;
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: rgba(109, 109, 110, 0.7);
+            color: #fff;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(109, 109, 110, 0.9);
+        }
+
+        .content-section {
+            padding: 60px 40px;
+        }
+
+        .section-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+
+        .content-row {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+        }
+
+        .content-row::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: none; /* Hidden by default */
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .scroll-btn:hover {
+            background: rgba(229, 9, 20, 0.8);
+            transform: translateY(-50%) scale(1.1);
+        }
+
+        .scroll-btn.visible {
+            display: flex;
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-btn.left {
+            left: 10px;
+        }
+
+        .scroll-btn.right {
+            right: 10px;
+        }
+
+        .content-card {
+            min-width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .project-card {
+            min-width: 300px;
+            height: 200px;
+            border-radius: 8px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .content-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.3);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .card-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(transparent, rgba(0,0,0,0.9));
+            padding: 20px;
+            color: white;
+        }
+
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card-subtitle {
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+
+        .top-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #e50914;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            font-weight: 600;
+        }
+
+        .view-btn {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: rgba(0,0,0,0.8);
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .view-btn:hover {
+            background: #e50914;
+        }
+
+        .skills-section {
+            position: relative;
+            padding: 80px 40px;
+        }
+
+        .skills-bg-number {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 20rem;
+            font-weight: 800;
+            color: rgba(255,255,255,0.03);
+            z-index: -1;
+        }
+
+        /* .skills-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            position: relative;
+            z-index: 1;
+        } */
+
+        .skills-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 5 per row */
+  gap: 20px;
+}
+
+        .skills-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .scroll-hint {
+            position: absolute;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #e50914;
+            font-size: 2rem;
+            animation: pulse 2s infinite;
+            z-index: 10;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        .skill-card {
+            min-width: 200px;
+            max-width: 250px;
+            height: 350px;
+            flex-shrink: 0;
+            aspect-ratio: 2/3;
+        }
+
+        .skill-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .skill-card::before {
+            content: attr(data-number);
+            position: absolute;
+            top: -20px;
+            right: -20px;
+            font-size: 8rem;
+            font-weight: 800;
+            color: rgba(229, 9, 20, 0.1);
+            z-index: -1;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(229, 9, 20, 0.2);
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            color: #e50914;
+            margin-bottom: 20px;
+        }
+
+        .skill-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #fff;
+        }
+
+        .skill-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .experience-section {
+            padding: 60px 40px;
+        }
+
+        .experience-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-left: 4px solid #e50914;
+            transition: all 0.3s ease;
+        }
+
+        .experience-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
+        }
+
+        .experience-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 10px;
+        }
+
+        .experience-company {
+            color: #e50914;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        .experience-date {
+            color: #999;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .experience-description {
+            color: #ccc;
+            line-height: 1.6;
+        }
+
+        .contact-section {
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .contact-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: #fff;
+        }
+
+        .contact-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(229, 9, 20, 0.2);
+        }
+
+        .contact-icon {
+            font-size: 2.5rem;
+            color: #e50914;
+            margin-bottom: 15px;
+        }
+
+        .contact-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+        
+                /* Profile modal */
+                .profile-modal {
+            position: fixed;
+            inset: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0,0,0,0.8);
+            z-index: 2000;
+        }
+        .profile-modal.open { display: flex; }
+        .profile-modal-content {
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            overflow: hidden;
+            border: 4px solid #e50914;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+            background: #000;
+            animation: popIn 0.2s ease-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .profile-modal-content img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        @keyframes popIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        .contact-value {
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 15px 20px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .content-section {
+                padding: 40px 20px;
+            }
+
+            .content-card {
+                min-width: 250px;
+            }
+
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="netflix-bg"></div>
+    
+  <!-- Header -->
+<header class="header">
+    <a href="#" class="logo">VIKAS BHARTI</a>
+    <nav class="header-nav">
+        <a href="#experience" class="nav-item">Experience</a>
+        <a href="#skills" class="nav-item">Skills</a>
+        <a href="#projects" class="nav-item">Products</a>
+        <div class="profile-section">
+            <!-- Removed the <i class="fas fa-user-tie"></i> -->
+            <div class="profile-pic"></div>
+            <i class="fas fa-chevron-down" style="color: #ccc;"></i>
+        </div>
+    </nav>
+</header>
+
+
+<!-- Profile Modal -->
+<div class="profile-modal" id="profileModal">
+    <div class="profile-modal-content">
+        <img src="https://avatars.githubusercontent.com/u/14871313?v=4" alt="Profile Picture">
+    </div>
+</div>
+
+
+
+    <!-- Hero Section -->
+    <!-- <section class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">STORY OF INNOVATION</h1>
+            <p class="hero-description">
+                In this portfolio, discover the dynamic world of mobile and web development where innovation meets execution. 
+                As an Engineering Manager at Carnot, I lead teams that build products serving millions of users. 
+                From core technical development to strategic leadership, explore how technology transforms ideas into scalable solutions.
+            </p>
+            <div class="hero-buttons">
+                <a href="#projects" class="btn btn-primary">
+                    <i class="fas fa-play"></i>
+                    Play
+                </a>
+                <a href="#about" class="btn btn-secondary">
+                    <i class="fas fa-info-circle"></i>
+                    More Info
+                </a>
+            </div>
+        </div> -->
+   <!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-content">
+        <h1 class="hero-title">VIKAS BHARTI</h1>
+        <h2 class="hero-subtitle">Engineering Manager @Carnot</h2>
+        <p class="hero-description">
+            In this portfolio, discover the dynamic world of mobile and web development where innovation meets execution. 
+            As an Engineering Manager at Carnot, I lead teams that build products serving millions of users. 
+            From core technical development to strategic leadership, explore how technology transforms ideas into scalable solutions.
+        </p>
+        <div class="hero-buttons single-button">
+            <a href="#trending" class="btn btn-primary">
+                <i class="fas fa-play"></i>
+                Play
+            </a>
+        </div>
+    </div>
+</section>
+
+    <!-- </section> -->
+
+            <!-- Trending Now Section -->
+        <section class="content-section" id="trending">
+            <h2 class="section-title">🎬 Now Streaming</h2>
+            <div class="content-row">
+                <button class="scroll-btn left" onclick="scrollRow(this.parentElement, -1)">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="scroll-btn right" onclick="scrollRow(this.parentElement, 1)">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="content-card">
+                    <!-- <div class="top-badge">TOP 10</div> -->
+                    <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop&crop=center" alt="Mobile Development" class="card-image">
+                    <div class="card-overlay">
+                        <div class="card-title">STORY OF INNOVATION</div>
+                        <!-- <div class="card-subtitle">MOBILE DEVELOPMENT</div> -->
+                        <div class="card-subtitle">Engineering Leadership</div>
+                        <div class="card-subtitle">Crafting scalable products & tech-led impact</div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <!-- <div class="top-badge">TOP 10</div> -->
+                    <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&crop=center" alt="Flutter" class="card-image">
+                    <div class="card-overlay">
+                        <div class="card-title">CROSS-PLATFORM MASTERY</div>
+                        <div class="card-subtitle">Pixel-perfect apps across Android & iOS                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <!-- <div class="top-badge">TOP 10</div> -->
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop&crop=center" alt="AI/ML" class="card-image">
+                    <div class="card-overlay">
+                        <div class="card-title">ARTIFICIAL INTELLIGENCE</div>
+                        <div class="card-subtitle">Leveraging ML & data to build smart systems                        </div>
+                    </div>
+                </div>
+                
+                <div class="content-card">
+                    <!-- <div class="top-badge">TOP 10</div> -->
+                    <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop&crop=center" alt="Web Development" class="card-image">
+                    <div class="card-overlay">
+                        <div class="card-title">WEB DEVELOPMENT</div>
+                        <div class="card-subtitle">Building seamless, responsive web experiences                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    <!-- Projects Section -->
+    <section class="content-section" id="projects">
+        <h2 class="section-title">Featured Projects</h2>
+        <div class="content-row">
+            <button class="scroll-btn left" onclick="scrollRow(-1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="scroll-btn right" onclick="scrollRow(this.parentElement, 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.carnot.krishe.kisaandiary&hl=en_IN&pli=1', '_blank')">
+                <img src="https://play-lh.googleusercontent.com/0EMuFraciKDh-vjOSuHJbo0OVUwS5WNuRGpxtfBg26SSX7a6luDoeQ0teG5rLmiL6irB=w1052-h592-rw" alt="Krish-e" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">KRISH-E: KHETI KE LIYE APP</div>
+                    <div class="card-subtitle">Android • Agriculture • Mahindra</div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.krishe.nidaan&hl=en_IN', '_blank')">
+                <img src="https://img.utdstc.com/screen/e86/66b/e8666b6b8c68de582d5b7f979b1fef4bf6a455f5280b161fffc84a75c019a59a:800" alt="Krishe Nidaan" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">KRISHE NIDAAN</div>
+                    <div class="card-subtitle">Android • Agriculture • Disease Detection</div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.dtm.bambu&hl=en_IN&gl=US', '_blank')">
+                <img src="https://play-lh.googleusercontent.com/gn5QsBK-MBsKIBZ_3ylQ3dEJy38Rof2oT3xOd0zweFhBhCJU0_HTiKTn_SKyp_bK19E=w1052-h592-rw" alt="MyBambu" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">MYBAMBU - BETTER THAN BANKING</div>
+                    <div class="card-subtitle">Android • FinTech • Banking</div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.zeenews.hindinews&hl=en_US&gl=US', '_blank')">
+                <img src="https://play-lh.googleusercontent.com/bVG38M_6v1yhQlXhS9JulzUskfb8zKRiWgk8yQU0KjZiU956PzJlCqi6PmoXsAxf2Ls=w1052-h592-rw" alt="Zee News" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">ZEE NEWS</div>
+                    <div class="card-subtitle">Android • News • Media</div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.winit.starnews.hin&hl=en&gl=US', '_blank')">
+                <img src="https://play-lh.googleusercontent.com/GQ7BU8oA14i81EAMsjDGBRTsQ34Y7zwpVtB40uMiYfKoE6bnJLuQoUpce1U1H6sjJiU=w1052-h592-rw" alt="Star News" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">STAR NEWS</div>
+                    <div class="card-subtitle">Android • News • Media</div>
+                </div>
+            </div>
+            
+            <div class="project-card" onclick="window.open('https://play.google.com/store/apps/details?id=com.swaraj.customer&hl=en_IN', '_blank')">
+                <img src="https://play-lh.googleusercontent.com/3P4kjS74Oo6cEWQXI24t4VVhZITHbFGWBdsBa_lwscX6rY-pRNpSgF5vo7-rV10Bd00=w1052-h592-rw" alt="Swaraj" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">SWARAJ CUSTOMER</div>
+                    <div class="card-subtitle">Android • Tractor • Mahindra</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Top 10 Skills Section -->
+    <section class="skills-section" id="skills">
+        <div class="skills-bg-number">1</div>
+        <h2 class="section-title">Top 10 Skills</h2>
+        <div class="skills-grid">
+            <!-- <div class="scroll-hint">
+                <i class="fas fa-chevron-right"></i>
+            </div> -->
+            <div class="skill-card" data-number="1">
+                <div class="skill-icon">
+                    <i class="fab fa-android"></i>
+                </div>
+                <h3 class="skill-title">ANDROID DEVELOPMENT</h3>
+                <p class="skill-description">Expert in Android development with deep understanding of Material Design principles and Google Play Store guidelines.</p>
+            </div>
+            
+            <div class="skill-card" data-number="2">
+                <div class="skill-icon">
+                    <i class="fab fa-apple"></i>
+                </div>
+                <h3 class="skill-title">iOS DEVELOPMENT</h3>
+                <p class="skill-description">Proficient in Swift and SwiftUI, creating native iOS applications with focus on performance and user experience.</p>
+            </div>
+            
+            <div class="skill-card" data-number="3">
+                <div class="skill-icon">
+                    <i class="fas fa-code"></i>
+                </div>
+                <h3 class="skill-title">WEB DEVELOPMENT</h3>
+                <p class="skill-description">Full-stack web development expertise with responsive design and scalable architecture.</p>
+            </div>
+            
+            <div class="skill-card" data-number="4">
+                <div class="skill-icon">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <h3 class="skill-title">FLUTTER DEVELOPMENT</h3>
+                <p class="skill-description">Cross-platform mobile development using Flutter, delivering high-performance apps for both iOS and Android.</p>
+            </div>
+            
+            <div class="skill-card" data-number="5">
+                <div class="skill-icon">
+                    <i class="fas fa-brain"></i>
+                </div>
+                <h3 class="skill-title">AI SPECIALIST</h3>
+                <p class="skill-description">Machine learning and artificial intelligence implementation, from data analysis to production-ready AI solutions.</p>
+            </div>
+            
+            <div class="skill-card" data-number="6">
+                <div class="skill-icon">
+                    <i class="fas fa-users"></i>
+                </div>
+                <h3 class="skill-title">TEAM LEADERSHIP</h3>
+                <p class="skill-description">Leading engineering teams, mentoring developers, and driving technical excellence across multiple projects.</p>
+            </div>
+            
+            <div class="skill-card" data-number="7">
+                <div class="skill-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="skill-title">STARTUP EXPERIENCE</h3>
+                <p class="skill-description">Built core products and teams at multiple startups, serving millions of users with scalable technical solutions.</p>
+            </div>
+            
+            <div class="skill-card" data-number="8">
+                <div class="skill-icon">
+                    <i class="fas fa-chart-line"></i>
+                </div>
+                <h3 class="skill-title">PRODUCT BUILDING</h3>
+                <p class="skill-description">End-to-end product development from ideation to launch, with focus on user needs and business objectives.</p>
+            </div>
+            
+            <div class="skill-card" data-number="9">
+                <div class="skill-icon">
+                    <i class="fas fa-comments"></i>
+                </div>
+                <h3 class="skill-title">COMMUNICATION</h3>
+                <p class="skill-description">Believes in getting things done through open, honest communication—bringing teams together and keeping everyone aligned.</p>
+            </div>
+            
+            <div class="skill-card" data-number="10">
+                <div class="skill-icon">
+                    <i class="fas fa-bullhorn"></i>
+                </div>
+                <h3 class="skill-title">TECHNICAL WRITING</h3>
+                <p class="skill-description">Author of <a href="https://medium.com/awesomeandroid" target="_blank" style="color: #e50914; text-decoration: none;">Awesome Android</a> publication, sharing knowledge and best practices in mobile development.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section class="content-section">
+        <h2 class="section-title">Top 5 Medium Stories</h2>
+        <div class="content-row">
+            <button class="scroll-btn left" onclick="scrollRow(this.parentElement, -1)">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="scroll-btn right" onclick="scrollRow(this.parentElement, 1)">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+            <div class="content-card" onclick="window.open('https://medium.com/me/stats/post/a5d12d96e5f6', '_blank')">
+                <!-- <div class="top-badge">TOP 10</div> -->
+                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=300&h=200&fit=crop&crop=center" alt="Android Development" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">ANDROID DEVELOPMENT GUIDE</div>
+                    <div class="card-subtitle">Technical Writing • Mobile Development</div>
+                </div>
+            </div>
+            
+            <div class="content-card" onclick="window.open('https://medium.com/me/stats/post/a819dbdbb6e4', '_blank')">
+                <!-- <div class="top-badge">TOP 10</div> -->
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&crop=center" alt="Kotlin Programming" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">KOTLIN PROGRAMMING TIPS</div>
+                    <div class="card-subtitle">Technical Writing • Kotlin</div>
+                </div>
+            </div>
+            
+            <div class="content-card" onclick="window.open('https://medium.com/me/stats/post/fdd134d3c205', '_blank')">
+                <div class="top-badge">TOP 10</div>
+                <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=300&h=200&fit=crop&crop=center" alt="Mobile Architecture" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">MOBILE ARCHITECTURE PATTERNS</div>
+                    <div class="card-subtitle">Technical Writing • Architecture</div>
+                </div>
+            </div>
+            
+            <div class="content-card" onclick="window.open('https://medium.com/me/stats/post/4b68690f2f4a', '_blank')">
+                <!-- <div class="top-badge">TOP 10</div> -->
+                <img src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?w=300&h=200&fit=crop&crop=center" alt="UI/UX Design" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">UI/UX DESIGN PRINCIPLES</div>
+                    <div class="card-subtitle">Technical Writing • Design</div>
+                </div>
+            </div>
+            
+            <div class="content-card" onclick="window.open('https://medium.com/me/stats/post/3427a6938326', '_blank')">
+                <!-- <div class="top-badge">TOP 10</div> -->
+                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?w=300&h=200&fit=crop&crop=center" alt="Flutter Development" class="card-image">
+                <div class="card-overlay">
+                    <div class="card-title">FLUTTER DEVELOPMENT GUIDE</div>
+                    <div class="card-subtitle">Technical Writing • Cross-platform</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section class="experience-section" id="experience">
+        <h2 class="section-title">Professional Experience</h2>
+        <div class="experience-card">
+            <h3 class="experience-title">Engineering Manager</h3>
+            <p class="experience-company">Carnot Technologies</p>
+            <p class="experience-date">June 2022 - Present · 3 yrs 2 mos</p>
+            <p class="experience-description">
+                • Team Leadership: Hiring, coaching, goal-setting, and professional development of team members<br>
+                • Review and Feedback: Reviewing and providing feedback on features, technology, architecture, designs, time & budget estimates, and test strategies<br>
+                • Process Optimization: Developing and evolving engineering and business processes to optimize team efficiency<br>
+                • Coding Excellence: Apply best practices and coding patterns for maintainable, modular, and high-quality solutions<br>
+                • Team Development: Develop and evolve engineering processes and teamwork models with creative problem-solving<br>
+                • Industry Engagement: Lead discussions on emerging industry technologies & trends
+            </p>
+        </div>
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Technical Lead</h3>
+            <p class="experience-company">Josh Software, Inc.</p>
+            <p class="experience-date">Sep 2021 - Jun 2022 · 10 mos</p>
+            <p class="experience-description">
+                • Learnt Project Management & Flutter in parallel<br>
+                • Handled a team of 8-10 developers on various projects<br>
+                • Worked on next-gen FinTech platform with Android & iOS developers<br>
+                • Worked closely on client requirements and distribute tasks among the team<br>
+                • Tech Stack - Java/Kotlin, Dagger, RoomDB, RxJava, AppsFlyer, Salesforce Marketing Cloud
+            </p>
+        </div>
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Head Of Mobile Development</h3>
+            <p class="experience-company">Spark.Live</p>
+            <p class="experience-date">May 2019 - Sep 2021 · 2 yrs 4 mos</p>
+            <p class="experience-description">
+                • Led mobile development initiatives and team management<br>
+                • Strategic planning and execution of mobile projects<br>
+                • Cross-platform development and technical architecture<br>
+                • End-to-end Android application development<br>
+                • Assist with interviewing and attracting new talent to Organization<br>
+                • Lead tech architecture, coding standards, and other team policies<br>
+                • Analyze user needs and software requirements to determine the feasibility of design within time and cost constraints
+            </p>
+        </div>
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Module Lead</h3>
+            <p class="experience-company">BluePi Consulting Pvt. Ltd.</p>
+            <p class="experience-date">May 2017 - Mar 2019 · 2 yrs</p>
+            <p class="experience-description">
+                • Design and develop application architecture<br>
+                • Timely release the app to meet end-user requirements<br>
+                • Take sessions on the latest tech-stack to educate team members<br>
+                • Developed Android applications using Java and Kotlin<br>
+                • Implemented best practices and design patterns<br>
+                • Collaborated with cross-functional teams for project delivery
+            </p>
+        </div>
+        
+      
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Android Developer</h3>
+            <p class="experience-company">MOVE10X</p>
+            <p class="experience-date">Sep 2015 - Apr 2017 · 1 yr 8 mos</p>
+            <p class="experience-description">
+                • Analyze user needs and software requirements to determine the feasibility of design within time and cost constraints<br>
+                • Think aggressively and do POC's to discuss new feature's feasibility<br>
+                • Modify existing software to correct errors, to adapt it to new hardware, or to upgrade interfaces and improve performance
+            </p>
+        </div>
+        
+        <div class="experience-card">
+            <h3 class="experience-title">Technical Consultant</h3>
+            <p class="experience-company">Electronic Arts (EA)</p>
+            <p class="experience-date">Jul 2013 - Jul 2015 · 2 yr 1 mo</p>
+            <p class="experience-description">
+                • Provided technical consultation for gaming applications<br>
+                • Collaborated with development teams on technical solutions<br>
+                • Contributed to software architecture and development processes
+            </p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-grid">
+            <a href="https://www.linkedin.com/in/bhartivikas/" class="contact-item" target="_blank">
+                <div class="contact-icon">
+                    <i class="fab fa-linkedin"></i>
+                </div>
+                <div class="contact-label">LinkedIn</div>
+                <div class="contact-value">bhartivikas</div>
+            </a>
+            
+            <a href="https://github.com/android-guru-vikas" class="contact-item" target="_blank">
+                <div class="contact-icon">
+                    <i class="fab fa-github"></i>
+                </div>
+                <div class="contact-label">GitHub</div>
+                <div class="contact-value">android-guru-vikas</div>
+            </a>
+            
+            <a href="https://medium.com/awesomeandroid" class="contact-item" target="_blank">
+                <div class="contact-icon">
+                    <i class="fab fa-medium"></i>
+                </div>
+                <div class="contact-label">Medium</div>
+                <div class="contact-value">Awesome Android</div>
+            </a>
+            
+            <a href="https://about.me/vikas.bharti" class="contact-item" target="_blank">
+                <div class="contact-icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="contact-label">About.me</div>
+                <div class="contact-value">vikas.bharti</div>
+            </a>
+        </div>
+    </section>
+
+    <script>
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all content sections
+        document.querySelectorAll('.content-section, .skills-section, .experience-section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add hover effects to content cards
+        document.querySelectorAll('.content-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'scale(1.05)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'scale(1)';
+            });
+        });
+
+        // Intelligent scroll functionality for content rows
+        function scrollRow(container, direction) {
+            const scrollAmount = 300; // Fixed scroll amount
+            container.scrollBy({
+                left: direction * scrollAmount,
+                behavior: 'smooth'
+            });
+        }
+
+        // Intelligent scroll button visibility logic
+        function updateScrollButtons(container) {
+            const wrapper = container;
+            const leftBtn = container.querySelector('.scroll-btn.left');
+            const rightBtn = container.querySelector('.scroll-btn.right');
+            
+            if (!leftBtn || !rightBtn) return;
+            
+            const scrollLeft = wrapper.scrollLeft;
+            const maxScroll = wrapper.scrollWidth - wrapper.clientWidth;
+            const hasOverflow = wrapper.scrollWidth > wrapper.clientWidth;
+            
+            // Hide both buttons if no overflow
+            if (!hasOverflow) {
+                leftBtn.classList.remove('visible');
+                rightBtn.classList.remove('visible');
+                return;
+            }
+            
+            // At start - only show right button
+            if (scrollLeft <= 0) {
+                leftBtn.classList.remove('visible');
+                rightBtn.classList.add('visible');
+            }
+            // At end - only show left button
+            else if (scrollLeft >= maxScroll - 1) {
+                leftBtn.classList.add('visible');
+                rightBtn.classList.remove('visible');
+            }
+            // In middle - show both buttons
+            else {
+                leftBtn.classList.add('visible');
+                rightBtn.classList.add('visible');
+            }
+        }
+
+        // Initialize intelligent scroll buttons for all content rows
+        document.querySelectorAll('.content-row').forEach(row => {
+            // Initial update
+            updateScrollButtons(row);
+            
+            // Update on scroll
+            row.addEventListener('scroll', () => {
+                updateScrollButtons(row);
+            });
+            
+            // Update on window resize for responsiveness
+            window.addEventListener('resize', () => {
+                updateScrollButtons(row);
+            });
+        });
+    </script>
+    <script>
+        // Profile Modal
+        const profilePic = document.querySelector('.profile-pic');
+        const profileModal = document.getElementById('profileModal');
+    
+        profilePic.addEventListener('click', () => {
+            profileModal.classList.add('open');
+        });
+    
+        // Close modal when clicking outside the enlarged image
+        profileModal.addEventListener('click', (e) => {
+            if (e.target === profileModal) {
+                profileModal.classList.remove('open');
+            }
+        });
+    </script>
+    
+</body>
+</html> 
