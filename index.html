@@ -299,6 +299,66 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.8);
         }
 
+        .detail-btn {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 30px;
+            background: rgba(229, 9, 20, 0.9);
+            color: white;
+            border: 2px solid rgba(229, 9, 20, 1);
+            border-radius: 5px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .detail-btn:hover {
+            background: rgba(229, 9, 20, 1);
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(229, 9, 20, 0.4);
+        }
+
+        .featured-detail {
+            margin-top: 30px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(20, 20, 20, 0.95), rgba(40, 40, 40, 0.95));
+            border-radius: 12px;
+            border: 2px solid rgba(229, 9, 20, 0.3);
+            display: none;
+        }
+
+        .featured-detail.show {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .featured-detail h3 {
+            color: #e50914;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .featured-detail .badge {
+            display: inline-block;
+            background: rgba(229, 9, 20, 0.2);
+            color: #e50914;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
         .top-badge {
             position: absolute;
             top: 10px;
@@ -830,6 +890,14 @@
             <p class="hero-description">
                 Enabling innovation with prudent risk oversight and technical acumen to strengthen system-wide <strong>financial stability</strong> against complex digital threats.
             </p>
+            <button class="detail-btn" onclick="toggleFeaturedDetail()">View Details</button>
+            <div id="featured-detail" class="featured-detail">
+                <h3>Emerging Technology Policy Focus</h3>
+                <span class="badge">Featured</span>
+                <p class="hero-description">
+                    Leveraging 26+ years of regulatory and Big 4 audit experience to provide <strong>strategic guidance</strong> on emerging technology. My focus is ensuring secure <strong>digital transformation</strong> by translating complex risks (AI, Cloud, Cyber, <strong>Quantum Computing</strong>) into clear, pragmatic guidance and <strong>enabling prudent adoption</strong> across the financial system.
+                </p>
+            </div>
         </div>
     </section>
 
@@ -984,6 +1052,12 @@
             tadumSound.currentTime = 0; // Reset to start
             tadumSound.play().catch(err => console.log('Audio play failed:', err));
         });
+
+        // Toggle featured detail section
+        function toggleFeaturedDetail() {
+            const detailSection = document.getElementById('featured-detail');
+            detailSection.classList.toggle('show');
+        }
 
         // Intelligent scroll functionality for content rows
         function scrollRow(container, direction) {
