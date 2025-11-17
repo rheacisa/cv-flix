@@ -6,7 +6,7 @@ Live demo: https://rheacisa.github.io/cv-flix/
 
 About
 - Minimal static HTML portfolio inspired by a Netflix layout.
-- Author: Rhea Nygard
+- Author: Rhea
 
 Preview locally
 
