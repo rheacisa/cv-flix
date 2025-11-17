@@ -629,31 +629,178 @@
         @media (max-width: 768px) {
             .header {
                 padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .header-nav {
+                flex-direction: column;
+                gap: 10px;
+                width: 100%;
+                text-align: center;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+            }
+
+            .hero-section {
+                min-height: 80vh;
+                padding: 100px 20px 40px;
             }
 
             .hero-title {
-                font-size: 2.5rem;
+                font-size: 2rem;
                 padding: 10px 20px;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .hero-description {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .sound-btn {
+                padding: 10px 20px;
+                font-size: 0.9rem;
+            }
+
+            .section-title {
+                font-size: 1.5rem;
             }
 
             .content-section {
                 padding: 40px 20px;
             }
 
+            .content-row {
+                gap: 15px;
+                padding: 15px 0;
+            }
+
             .content-card {
-                min-width: 200px;
+                min-width: 160px;
+                height: 140px;
             }
 
             .project-card {
-                min-width: 200px;
+                min-width: 160px;
+                height: 140px;
+            }
+
+            .card-title {
+                font-size: 0.9rem;
+            }
+
+            .card-subtitle {
+                font-size: 0.75rem;
+            }
+
+            .scroll-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+
+            .scroll-btn.left {
+                left: 5px;
+            }
+
+            .scroll-btn.right {
+                right: 5px;
+            }
+
+            .skills-section {
+                padding: 60px 20px;
+            }
+
+            .skills-bg-number {
+                font-size: 10rem;
             }
 
             .skills-grid {
                 grid-template-columns: 1fr;
+                gap: 15px;
+            }
+
+            .skill-card {
+                min-width: 100%;
+                height: auto;
+            }
+
+            .skill-icon {
+                font-size: 2.5rem;
+            }
+
+            .skill-title {
+                font-size: 1.1rem;
+            }
+
+            .experience-section {
+                padding: 40px 20px;
+            }
+
+            .experience-card {
+                padding: 20px;
+            }
+
+            .experience-title {
+                font-size: 1.2rem;
+            }
+
+            .contact-section {
+                padding: 40px 20px;
             }
 
             .contact-grid {
                 grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .contact-item {
+                padding: 20px;
+            }
+
+            .profile-pic {
+                width: 30px;
+                height: 30px;
+            }
+
+            .nav-item {
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 1.5rem;
+                padding: 8px 15px;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            .content-card, .project-card {
+                min-width: 140px;
+                height: 120px;
+            }
+
+            .scroll-btn {
+                width: 35px;
+                height: 35px;
             }
         }
     </style>
