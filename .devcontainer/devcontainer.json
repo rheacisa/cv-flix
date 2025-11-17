@@ -1,0 +1,15 @@
+{
+  "name": "cv-flix Codespace",
+  "image": "mcr.microsoft.com/devcontainers/javascript-node:18",
+  "remoteUser": "vscode",
+  "forwardPorts": [8000],
+  "postCreateCommand": "npm install -g serve || true",
+  "postStartCommand": "cd ${containerWorkspaceFolder} && nohup serve -s . -l 8000 > /tmp/serve.log 2>&1 &",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "esbenp.prettier-vscode"
+      ]
+    }
+  }
+}
