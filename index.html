@@ -69,32 +69,7 @@
             color: #e50914;
         }
 
-        .profile-section {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
 
-    
-        .profile-pic {
-            width: 35px;
-            height: 35px;
-            border-radius: 50%;
-            border: 2px solid #e50914;
-            background: url('https://avatars.githubusercontent.com/u/14871313?v=4') center/cover no-repeat;
-            cursor: pointer;
-        }
-
-        /* Profile modal */
-                .profile-modal {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-        }
      
         .hero-section {
             min-height: 100vh;
@@ -527,39 +502,7 @@
             margin-bottom: 5px;
         }
         
-                /* Profile modal */
-                .profile-modal {
-            position: fixed;
-            inset: 0;
-            display: none;
-            align-items: center;
-            justify-content: center;
-            background: rgba(0,0,0,0.8);
-            z-index: 2000;
-        }
-        .profile-modal.open { display: flex; }
-        .profile-modal-content {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            overflow: hidden;
-            border: 4px solid #e50914;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-            background: #000;
-            animation: popIn 0.2s ease-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .profile-modal-content img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-        @keyframes popIn {
-            from { transform: scale(0.85); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
+
 
         .contact-value {
             color: #ccc;
@@ -614,22 +557,8 @@
         <a href="#experience" class="nav-item">Experience</a>
         <a href="#skills" class="nav-item">Skills</a>
         <a href="#projects" class="nav-item">Products</a>
-        <div class="profile-section">
-            <!-- Removed the <i class="fas fa-user-tie"></i> -->
-            <div class="profile-pic"></div>
-            <i class="fas fa-chevron-down" style="color: #ccc;"></i>
-        </div>
     </nav>
 </header>
-
-
-<!-- Profile Modal -->
-<div class="profile-modal" id="profileModal">
-    <div class="profile-modal-content">
-        <img src="https://avatars.githubusercontent.com/u/14871313?v=4" alt="Profile Picture">
-    </div>
-</div>
-
 
 
     <!-- Hero Section -->
@@ -1150,22 +1079,7 @@
             });
         });
     </script>
-    <script>
-        // Profile Modal
-        const profilePic = document.querySelector('.profile-pic');
-        const profileModal = document.getElementById('profileModal');
-    
-        profilePic.addEventListener('click', () => {
-            profileModal.classList.add('open');
-        });
-    
-        // Close modal when clicking outside the enlarged image
-        profileModal.addEventListener('click', (e) => {
-            if (e.target === profileModal) {
-                profileModal.classList.remove('open');
-            }
-        });
-    </script>
+
     
 </body>
 </html>
