@@ -189,7 +189,7 @@
 
         .content-row {
             display: flex;
-            gap: 10px;
+            gap: 15px;
             overflow-x: auto;
             padding: 20px 0;
             scrollbar-width: none;
@@ -236,8 +236,8 @@
         }
 
         .content-card {
-            min-width: 200px;
-            height: 150px;
+            min-width: 220px;
+            height: 165px;
             border-radius: 12px;
             position: relative;
             overflow: hidden;
@@ -249,8 +249,8 @@
         }
 
         .project-card {
-            min-width: 200px;
-            height: 150px;
+            min-width: 220px;
+            height: 165px;
             border-radius: 8px;
             position: relative;
             overflow: hidden;
@@ -284,15 +284,15 @@
         }
 
         .card-title {
-            font-size: 0.9rem;
+            font-size: 0.95rem;
             font-weight: 700;
-            margin-bottom: 3px;
+            margin-bottom: 4px;
             letter-spacing: 0.5px;
             text-shadow: 2px 2px 6px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8);
         }
 
         .card-subtitle {
-            font-size: 0.75rem;
+            font-size: 0.8rem;
             color: #e0e0e0;
             line-height: 1.2;
             text-shadow: 1px 1px 4px rgba(0,0,0,0.95), 0 0 8px rgba(0,0,0,0.8);
@@ -582,6 +582,32 @@
             font-size: 0.9rem;
         }
 
+        .sound-btn {
+            background: rgba(255,255,255,0.1);
+            border: 2px solid #e50914;
+            color: #e50914;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px 0;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sound-btn:hover {
+            background: #e50914;
+            color: #fff;
+            transform: scale(1.1);
+        }
+
+        .sound-btn:active {
+            transform: scale(0.95);
+        }
+
         @keyframes fadeInUp {
             from {
                 opacity: 0;
@@ -665,6 +691,9 @@
 <section class="hero-section">
     <div class="hero-content">
         <h1 class="hero-title">RHEA NYGARD</h1>
+        <button class="sound-btn" onclick="playTaDum()" aria-label="Play Netflix sound">
+            <i class="fas fa-volume-up"></i>
+        </button>
         <h2 class="hero-subtitle">Cyber Risk & Policy Strategist @Federal Reserve System</h2>
         <p class="hero-description">
             In this portfolio, discover the critical intersection of financial stability and emerging technology, where policy, regulation, and innovation collide. As a Cybersecurity Policy Analyst at the Board of Governors, I lead strategic initiatives that safeguard the U.S. financial system from systemic operational and cyber risks. From high-level interagency policy to a new focus on AI and quantum computing, explore how we can navigate emerging threats and opportunities to ensure a resilient financial future.
@@ -1067,7 +1096,21 @@
                 behavior: 'smooth'
             });
         }
+
+        // Ta-dum sound functionality
+        function playTaDum() {
+            const audio = document.getElementById('tadum-sound');
+            if (audio) {
+                audio.currentTime = 0;
+                audio.play().catch(err => console.log('Audio play failed:', err));
+            }
+        }
     </script>
+    
+    <!-- Netflix Ta-dum Sound -->
+    <audio id="tadum-sound" preload="auto">
+        <source src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" type="audio/mpeg">
+    </audio>
 
     
 </body>
