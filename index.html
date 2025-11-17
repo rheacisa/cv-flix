@@ -565,7 +565,7 @@
     
   <!-- Header -->
 <header class="header">
-    <a href="#" class="logo">RHEA NYGARD</a>
+    <a href="#" class="logo" id="logo-sound">RHEA NYGARD</a>
     <nav class="header-nav">
         <a href="#experience" class="nav-item">Experience</a>
         <a href="#skills" class="nav-item">Skills</a>
@@ -573,6 +573,11 @@
         <img src="cherry blossom.jpg" alt="Profile" class="profile-pic">
     </nav>
 </header>
+
+<!-- Hidden audio element -->
+<audio id="tadum-sound" preload="auto">
+    <source src="https://www.myinstants.com/media/sounds/netflix-sound.mp3" type="audio/mpeg">
+</audio>
 
 
     <!-- Hero Section -->
@@ -1001,6 +1006,16 @@
             card.addEventListener('mouseleave', function() {
                 this.style.transform = 'scale(1)';
             });
+        });
+
+        // Netflix ta-dum sound on logo click
+        const logoSound = document.getElementById('logo-sound');
+        const tadumSound = document.getElementById('tadum-sound');
+        
+        logoSound.addEventListener('click', function(e) {
+            e.preventDefault();
+            tadumSound.currentTime = 0; // Reset to start
+            tadumSound.play().catch(err => console.log('Audio play failed:', err));
         });
 
         // Intelligent scroll functionality for content rows
