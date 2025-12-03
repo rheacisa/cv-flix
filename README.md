@@ -1,8 +1,26 @@
 # cv-flix
 
-🎬 A Netflix-inspired portfolio website showcasing your professional experience, skills, and projects with a sleek, interactive design.
+🎬 A Netflix-inspired portfolio website showcasing cybersecurity expertise, professional experience, and technical projects with a sleek, interactive design.
 
 **Live Demo:** https://rheacisa.github.io/cv-flix/
+
+## 🛡️ Security-First Portfolio
+
+This portfolio is designed specifically to showcase **cybersecurity and risk management expertise** with:
+
+- **Professional presentation** of cyber policy and risk analysis work
+- **Clear demonstration** of technical and leadership capabilities
+- **Secure deployment** via GitHub Pages with HTTPS
+- **Clean, professional code** demonstrating attention to detail
+- **Links to authoritative sources** (U.S. Treasury, G7 resources)
+- **Structured content** reflecting policy analysis and strategic thinking
+
+### Highlighted Cybersecurity Focus Areas:
+- 🏛️ **Cyber Risk & Policy Strategy** - Federal Reserve System experience
+- 🌐 **International Policy** - G7 Cyber Expert Group & IAIS Insurance Task Force
+- 🔒 **Operational Resilience** - Financial system protection
+- 🤖 **Emerging Technology** - AI & Quantum Computing risks
+- 📊 **Risk Analysis** - Systemic cyber threat assessment
 
 ## ✨ Features
 
@@ -20,13 +38,13 @@
 - Touch-friendly navigation buttons
 
 ### 🎯 Sections
-- **Hero Section** - Name, title, and interactive sound button
-- **Now Streaming** - Featured highlights and specialties
-- **Original Specials** - Leadership roles and key projects with clickable links
-- **Skills** - Top 10 skills in grid layout
-- **Experience** - Professional work history with left-aligned details
-- **Contact** - Social links (LinkedIn, GitHub, About.me)
-- **Download Resume** - Direct PDF download button
+- **Hero Section** - Name, title (Cyber Risk & Policy Strategist), and interactive sound button
+- **Now Streaming** - Featured cybersecurity highlights and specialties
+- **Original Specials** - Leadership roles in cyber policy (G7, IAIS) with clickable links to official sources
+- **Skills** - Top 10 technical and policy skills in grid layout
+- **Experience** - Professional work history with detailed cyber responsibilities
+- **Contact** - Professional social links (LinkedIn, GitHub, About.me)
+- **Download Resume** - Direct PDF download button for detailed credentials
 
 ### 🎵 Interactive Elements
 - Netflix "ta-dum" sound effect on play button
