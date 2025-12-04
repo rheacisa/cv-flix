@@ -111,6 +111,9 @@
         .hero-content {
             max-width: 800px;
             animation: fadeInUp 1s ease-out;
+            padding: 0 20px;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .hero-title {
@@ -121,6 +124,9 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
         }
 
         .hero-subtitle {
@@ -129,6 +135,8 @@
             margin-bottom: 20px;
             color: #ccc;
             opacity: 0.9;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .hero-badge {
@@ -147,6 +155,9 @@
             color: #ccc;
             margin-bottom: 30px;
             line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            max-width: 100%;
         }
 
         .hero-buttons {
@@ -508,6 +519,8 @@
             color: #ccc;
             line-height: 1.5;
             font-size: 0.9rem;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
         }
 
         .experience-section {
@@ -551,6 +564,9 @@
             color: #ccc;
             line-height: 1.6;
             text-align: left;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            white-space: pre-wrap;
         }
 
         .contact-section {
@@ -640,6 +656,12 @@
         @media (max-width: 768px) {
             body {
                 font-size: 16px;
+                overflow-x: hidden;
+            }
+
+            * {
+                word-wrap: break-word;
+                overflow-wrap: break-word;
             }
 
             .header {
@@ -672,18 +694,29 @@
             .hero-section {
                 min-height: auto;
                 padding: 120px 25px 50px;
+                overflow-x: hidden;
+            }
+
+            .hero-content {
+                width: 100%;
+                max-width: 100%;
+                padding: 0 10px;
             }
 
             .hero-title {
                 font-size: 2.2rem;
                 line-height: 1.3;
                 margin-bottom: 15px;
+                word-break: break-word;
+                max-width: 100%;
             }
 
             .hero-subtitle {
                 font-size: 1.15rem;
                 line-height: 1.5;
                 margin-bottom: 15px;
+                word-break: break-word;
+                max-width: 100%;
             }
 
             .hero-description {
@@ -691,6 +724,9 @@
                 line-height: 1.7;
                 text-align: left;
                 margin-bottom: 25px;
+                word-break: break-word;
+                max-width: 100%;
+                white-space: normal;
             }
 
             .hero-buttons {
